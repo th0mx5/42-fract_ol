@@ -6,7 +6,7 @@
 /*   By: thbernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 11:54:23 by thbernar          #+#    #+#             */
-/*   Updated: 2018/03/10 19:00:55 by thbernar         ###   ########.fr       */
+/*   Updated: 2018/03/10 19:15:17 by thbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int main(int ac, char **av)
 	if (ac != 2)
 		ft_error("usage : ./fractol [mandelbrot, julia, burningship]\n");
 	map.mlx = mlx_init();
-	map.win = mlx_new_window(map.mlx, 500, 500, "Fract_ol");
+	map.win = mlx_new_window(map.mlx, 1024, 768, "Fract_ol");
 	(void)**av;
 	ft_win_draw(&map);
 	ft_printcontrols();
