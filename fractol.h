@@ -6,7 +6,7 @@
 /*   By: thbernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 11:55:52 by thbernar          #+#    #+#             */
-/*   Updated: 2018/03/10 18:59:44 by thbernar         ###   ########.fr       */
+/*   Updated: 2018/03/11 19:54:18 by thbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,22 +25,37 @@ typedef struct	s_coord
 	int z;
 }				t_coord;
 
+typedef struct	s_coord_d
+{
+	double x;
+	double y;
+}				t_coord_d;
+
+typedef struct	s_complex
+{
+	double i;
+	double r;
+}				t_complex;
+
 typedef struct	s_map
 {
 	void	*mlx;
 	void	*win;
 	void	*img;
-	t_coord	fsize;
 	char	*fname;
-	t_coord	wsize;
 	int		*img_data;
 	double	zoom;
 	t_coord	shift;
+	int		imax;
 }				t_map;
 
 int		ft_keyhooked(int keycode, t_map *map);
 
 void	ft_win_draw(t_map *map);
+void	ft_img_putpixel(t_map *map, t_coord p, int color);
+void	ft_calc_color(t_map *map, t_coord p);
+
+void	ft_map_init(t_map *map, char *file_name);
 
 void	ft_printcontrols(void);
 void	ft_error(char *s);

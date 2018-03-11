@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   fts_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thbernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/29 15:04:48 by thbernar          #+#    #+#             */
-/*   Updated: 2018/03/11 18:13:27 by thbernar         ###   ########.fr       */
+/*   Created: 2018/03/11 18:43:12 by thbernar          #+#    #+#             */
+/*   Updated: 2018/03/11 19:17:40 by thbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	ft_printcontrols(void)
+void	ft_map_init(t_map *map, char *file_name)
 {
-	ft_putstr("\n--- Controls ---\n");
-	ft_putstr("+ : zoom in\n");
-	ft_putstr("- : zoom out\n");
-	ft_putstr("ARROWS : move\n");
-	ft_putstr("LEFT OPTION : move\n");
-	ft_putstr("LEFT CMD : move\n");
-}
-
-void	ft_error(char *s)
-{
-	ft_putstr(s);
-	exit(-1);
+	map->fname = ft_strdup(file_name);
+	map->imax = 50;
+	map->zoom = 1.00;
+	map->imax = 0;
+	map->shift.x = 0;
+	map->shift.y = 0;
+	map->shift.z = 0;
 }
