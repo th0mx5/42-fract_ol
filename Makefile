@@ -6,7 +6,7 @@
 #    By: thbernar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/01 00:25:16 by thbernar          #+#    #+#              #
-#    Updated: 2018/03/11 19:08:11 by thbernar         ###   ########.fr        #
+#    Updated: 2018/03/13 15:37:56 by thbernar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@ NAME = fractol
 SRC = main.c \
 	  fts_utils.c \
 	  fts_draw.c \
-	  fts_map.c
+	  fts_map.c \
+	  fts_fractales.c
 
 OBJ = $(SRC:.c=.o)
 

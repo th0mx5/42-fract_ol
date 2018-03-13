@@ -6,7 +6,7 @@
 /*   By: thbernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 11:55:52 by thbernar          #+#    #+#             */
-/*   Updated: 2018/03/12 18:18:09 by thbernar         ###   ########.fr       */
+/*   Updated: 2018/03/13 16:03:11 by thbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,12 @@ typedef struct	s_map
 	void		*win;
 	void		*img;
 	char		*fname;
+	t_coord		winsize;
 	char		*img_data;
 	double		zoom;
 	t_coord		shift;
 	int			imax;
 	int			color_id;
-	int			colors[3];
 }				t_map;
 
 int				ft_keyhooked(int keycode, t_map *map);
@@ -63,6 +63,12 @@ void			ft_map_init(t_map *map, char *file_name);
 
 void			ft_printcontrols(void);
 void			ft_error(char *s);
-void			ft_switchcolors(t_map *map);
+void			ft_pickcolors(t_map *map, int *color, int i);
+
+int				ft_mandelbrot(t_map *map, t_coord p);
+int				ft_julia(t_map *map, t_coord p);
+int				ft_burningship(t_map *map, t_coord p);
+
+double			ft_abs_d(double nb);
 
 #endif
