@@ -6,7 +6,7 @@
 /*   By: thbernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 11:54:23 by thbernar          #+#    #+#             */
-/*   Updated: 2018/03/13 15:11:28 by thbernar         ###   ########.fr       */
+/*   Updated: 2018/03/13 16:25:21 by thbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ int	ft_keyhooked(int keycode, t_map *map)
 		map->shift.y = map->shift.y - map->winsize.y / 2;
 	}
 	if (keycode == 123)
-		map->shift.x = map->shift.x + 20;
+		map->shift.x = map->shift.x - 30;
 	if (keycode == 124)
-		map->shift.x = map->shift.x - 20;
+		map->shift.x = map->shift.x + 30;
 	if (keycode == 125)
-		map->shift.y = map->shift.y - 20;
+		map->shift.y = map->shift.y + 30;
 	if (keycode == 126)
-		map->shift.y = map->shift.y + 20;
+		map->shift.y = map->shift.y - 30;
 	if (keycode == 259 && map->imax < 400)
 		map->imax = map->imax + 10;
 	if (keycode == 261 && map->imax > 10)

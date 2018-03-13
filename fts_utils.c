@@ -6,7 +6,7 @@
 /*   By: thbernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 15:04:48 by thbernar          #+#    #+#             */
-/*   Updated: 2018/03/13 16:17:32 by thbernar         ###   ########.fr       */
+/*   Updated: 2018/03/13 16:37:38 by thbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,18 +36,25 @@ void	ft_pickcolors(t_map *map, int *color, int i)
 		color[1] = 0;
 		color[2] = 0;
 	}
-	else if (map->color_id % 2 == 0)
+	else if (map->color_id % 3 == 0)
 	{
 		color[0] = 255 * ((double)1 - (double)i / map->imax);
 		color[1] = 255 * ((double)1 - (double)i / map->imax);
 		color[2] = 255 * ((double)1 - (double)i / map->imax);
 	}
-	else if (map->color_id % 2 == 1)
+	else if (map->color_id % 3 == 1)
+	{
+		color[0] = 1 * i;
+		color[1] = 20 * i;
+		color[2] = 30 * i;
+	}
+	else if (map->color_id % 3 == 2)
 	{
 		color[0] = 100 * i;
 		color[1] = 10 * i;
 		color[2] = 50 * i;
 	}
+
 }
 
 double	ft_abs_d(double nb)
