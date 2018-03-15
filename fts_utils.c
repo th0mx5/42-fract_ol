@@ -6,7 +6,7 @@
 /*   By: thbernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/29 15:04:48 by thbernar          #+#    #+#             */
-/*   Updated: 2018/03/13 16:37:38 by thbernar         ###   ########.fr       */
+/*   Updated: 2018/03/15 16:14:53 by thbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,15 @@
 
 void	ft_printcontrols(void)
 {
-	ft_putstr("\n--- Controls ---\n");
+	ft_putstr("--- Controls ---\n");
 	ft_putstr("+ : zoom in\n");
 	ft_putstr("- : zoom out\n");
 	ft_putstr("ARROWS : move\n");
-	ft_putstr("LEFT OPTION : move\n");
-	ft_putstr("LEFT CMD : move\n");
+	ft_putstr("MOUSE (julia only) : toggle C\n");
+	ft_putstr("LEFT OPTION : increase I\n");
+	ft_putstr("LEFT CMD : decrease I\n");
+	ft_putstr("LEFT CTRL : toggle colors\n");
+	ft_putstr("--- End Controls ---\n");
 }
 
 void	ft_error(char *s)
@@ -54,10 +57,17 @@ void	ft_pickcolors(t_map *map, int *color, int i)
 		color[1] = 10 * i;
 		color[2] = 50 * i;
 	}
-
 }
 
 double	ft_abs_d(double nb)
+{
+	if (nb < 0)
+		return (-nb);
+	else
+		return (nb);
+}
+
+int		ft_abs(int nb)
 {
 	if (nb < 0)
 		return (-nb);

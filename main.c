@@ -6,7 +6,7 @@
 /*   By: thbernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 11:54:23 by thbernar          #+#    #+#             */
-/*   Updated: 2018/03/13 16:25:21 by thbernar         ###   ########.fr       */
+/*   Updated: 2018/03/15 16:37:08 by thbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,7 @@ int	ft_keyhooked(int keycode, t_map *map)
 {
 	if (keycode == 53)
 		exit(0);
-	if (keycode == 69)
-	{
-		map->zoom = map->zoom + 300;
-		map->shift.x = map->shift.x + map->winsize.x / 2;
-		map->shift.y = map->shift.y + map->winsize.y / 2;
-	}
-	if (keycode == 78 && map->zoom > 300)
-	{
-		map->zoom = map->zoom - 300;
-		map->shift.x = map->shift.x - map->winsize.x / 2;
-		map->shift.y = map->shift.y - map->winsize.y / 2;
-	}
+	ft_zoom(keycode, map);
 	if (keycode == 123)
 		map->shift.x = map->shift.x - 30;
 	if (keycode == 124)
@@ -46,6 +35,46 @@ int	ft_keyhooked(int keycode, t_map *map)
 	return (0);
 }
 
+int	ft_mousehooked(int button, int x, int y, t_map *map)
+{
+	(void)button;
+	(void)x;
+	(void)y;
+	(void)map;
+	return (0);
+}
+
+int	ft_hook(int x, int y, t_map *map)
+{
+	if (ft_abs(map->mouse.x) - ft_abs(x) > 10 || \
+			ft_abs(map->mouse.y) - ft_abs(y))
+	{
+		map->mouse.x = x;
+		map->mouse.y = y;
+		map->c.r = ((double)x + map->shift.x) / map->zoom - 1.2;
+		map->c.i = ((double)y + map->shift.y) / map->zoom - 1.2;
+	}
+	ft_win_draw(map);
+	return (0);
+}
+
+int	ft_zoom(int keycode, t_map *map)
+{
+	if (keycode == 69)
+	{
+		map->zoom = map->zoom + 300;
+		map->shift.x = map->shift.x + map->winsize.x / 2;
+		map->shift.y = map->shift.y + map->winsize.y / 2;
+	}
+	if (keycode == 78 && map->zoom > 300)
+	{
+		map->zoom = map->zoom - 300;
+		map->shift.x = map->shift.x - map->winsize.x / 2;
+		map->shift.y = map->shift.y - map->winsize.y / 2;
+	}
+	return (0);
+}
+
 int	main(int ac, char **av)
 {
 	t_map	map;
@@ -58,6 +87,8 @@ int	main(int ac, char **av)
 	ft_win_draw(&map);
 	ft_printcontrols();
 	mlx_key_hook(map.win, ft_keyhooked, &map);
+	mlx_mouse_hook(map.win, ft_mousehooked, &map);
+	mlx_hook(map.win, 6, (1L << 6), ft_hook, &map);
 	mlx_loop(map.mlx);
 	return (0);
 }

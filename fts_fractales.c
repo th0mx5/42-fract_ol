@@ -6,7 +6,7 @@
 /*   By: thbernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 15:29:36 by thbernar          #+#    #+#             */
-/*   Updated: 2018/03/13 16:09:45 by thbernar         ###   ########.fr       */
+/*   Updated: 2018/03/15 15:38:58 by thbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ int		ft_julia(t_map *map, t_coord p)
 	int			i;
 	double		tmp;
 
-	c.r = 0.285;
-	c.i = 0.01;
+	c.r = map->c.r;
+	c.i = map->c.i;
 	z.r = ((double)p.x + map->shift.x) / map->zoom - 1.2;
 	z.i = ((double)p.y + map->shift.y) / map->zoom - 1.2;
 	i = 0;

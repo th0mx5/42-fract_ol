@@ -6,7 +6,7 @@
 /*   By: thbernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 11:55:52 by thbernar          #+#    #+#             */
-/*   Updated: 2018/03/13 16:03:11 by thbernar         ###   ########.fr       */
+/*   Updated: 2018/03/15 16:34:25 by thbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,14 @@ typedef struct	s_map
 	t_coord		shift;
 	int			imax;
 	int			color_id;
+	t_coord		mouse;
+	t_complex	c;
 }				t_map;
 
 int				ft_keyhooked(int keycode, t_map *map);
+int				ft_zoom(int keycode, t_map *map);
+int				ft_mousehooked(int button, int x, int y, t_map *map);
+int				ft_hook(int x, int y, t_map *map);
 
 void			ft_win_draw(t_map *map);
 void			ft_img_putpixel(t_map *map, t_coord p, int *color);
@@ -70,5 +75,6 @@ int				ft_julia(t_map *map, t_coord p);
 int				ft_burningship(t_map *map, t_coord p);
 
 double			ft_abs_d(double nb);
+int				ft_abs(int nb);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: thbernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 18:43:12 by thbernar          #+#    #+#             */
-/*   Updated: 2018/03/13 16:10:28 by thbernar         ###   ########.fr       */
+/*   Updated: 2018/03/15 15:36:54 by thbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void	ft_map_init(t_map *map, char *file_name)
 	}
 	else
 		ft_error("error");
+	map->c.r = 0.285;
+	map->c.i = 0.01;
 	map->zoom = 300;
 	map->imax = 50;
 	map->shift.x = 0;
