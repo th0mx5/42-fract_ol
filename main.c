@@ -6,7 +6,7 @@
 /*   By: thbernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 11:54:23 by thbernar          #+#    #+#             */
-/*   Updated: 2018/03/22 14:16:33 by thbernar         ###   ########.fr       */
+/*   Updated: 2018/03/22 14:22:10 by thbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,20 +80,16 @@ int	main(int ac, char **av)
 {
 	t_map	map;
 
-	if (ac > 3)
+	if (ac != 2)
 		ft_error("usage : ./fractol [mandelbrot, julia, burningship]\n");
-	while (ac != 1)
-	{
-		ft_map_init(&map, av[1]);
-		map.mlx = mlx_init();
-		map.win = mlx_new_window(map.mlx, map.winsize.x,\
-				map.winsize.y, "Fract_ol");
-		ft_win_draw(&map);
-		ft_printcontrols();
-		mlx_key_hook(map.win, ft_keyhooked, &map);
-		mlx_mouse_hook(map.win, ft_mousehooked, &map);
-		mlx_hook(map.win, 6, (1L << 6), ft_hook, &map);
-		mlx_loop(map.mlx);
-	}
+	ft_map_init(&map, av[1]);
+	map.mlx = mlx_init();
+	map.win = mlx_new_window(map.mlx, map.winsize.x, map.winsize.y, "Fract_ol");
+	ft_win_draw(&map);
+	ft_printcontrols();
+	mlx_key_hook(map.win, ft_keyhooked, &map);
+	mlx_mouse_hook(map.win, ft_mousehooked, &map);
+	mlx_hook(map.win, 6, (1L << 6), ft_hook, &map);
+	mlx_loop(map.mlx);
 	return (0);
 }
