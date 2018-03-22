@@ -6,7 +6,7 @@
 /*   By: thbernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 11:54:23 by thbernar          #+#    #+#             */
-/*   Updated: 2018/03/15 16:37:08 by thbernar         ###   ########.fr       */
+/*   Updated: 2018/03/22 14:16:33 by thbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	ft_keyhooked(int keycode, t_map *map)
 {
 	if (keycode == 53)
 		exit(0);
-	ft_zoom(keycode, map);
+	ft_zoom(keycode, map, 0, 0);
 	if (keycode == 123)
 		map->shift.x = map->shift.x - 30;
 	if (keycode == 124)
@@ -37,10 +37,11 @@ int	ft_keyhooked(int keycode, t_map *map)
 
 int	ft_mousehooked(int button, int x, int y, t_map *map)
 {
-	(void)button;
-	(void)x;
-	(void)y;
-	(void)map;
+	if (button == 6 || button == 7)
+		ft_zoom(69, map, x, y);
+	if (button == 4)
+		ft_zoom(78, map, x, y);
+	ft_win_draw(map);
 	return (0);
 }
 
@@ -58,19 +59,19 @@ int	ft_hook(int x, int y, t_map *map)
 	return (0);
 }
 
-int	ft_zoom(int keycode, t_map *map)
+int	ft_zoom(int keycode, t_map *map, int x, int y)
 {
 	if (keycode == 69)
 	{
 		map->zoom = map->zoom + 300;
-		map->shift.x = map->shift.x + map->winsize.x / 2;
-		map->shift.y = map->shift.y + map->winsize.y / 2;
+		map->shift.x = map->shift.x + map->winsize.x / 2 + x;
+		map->shift.y = map->shift.y + map->winsize.y / 2 + y;
 	}
 	if (keycode == 78 && map->zoom > 300)
 	{
 		map->zoom = map->zoom - 300;
-		map->shift.x = map->shift.x - map->winsize.x / 2;
-		map->shift.y = map->shift.y - map->winsize.y / 2;
+		map->shift.x = map->shift.x - map->winsize.x / 2 - x;
+		map->shift.y = map->shift.y - map->winsize.y / 2 - y;
 	}
 	return (0);
 }
@@ -79,16 +80,20 @@ int	main(int ac, char **av)
 {
 	t_map	map;
 
-	if (ac != 2)
+	if (ac > 3)
 		ft_error("usage : ./fractol [mandelbrot, julia, burningship]\n");
-	ft_map_init(&map, av[1]);
-	map.mlx = mlx_init();
-	map.win = mlx_new_window(map.mlx, map.winsize.x, map.winsize.y, "Fract_ol");
-	ft_win_draw(&map);
-	ft_printcontrols();
-	mlx_key_hook(map.win, ft_keyhooked, &map);
-	mlx_mouse_hook(map.win, ft_mousehooked, &map);
-	mlx_hook(map.win, 6, (1L << 6), ft_hook, &map);
-	mlx_loop(map.mlx);
+	while (ac != 1)
+	{
+		ft_map_init(&map, av[1]);
+		map.mlx = mlx_init();
+		map.win = mlx_new_window(map.mlx, map.winsize.x,\
+				map.winsize.y, "Fract_ol");
+		ft_win_draw(&map);
+		ft_printcontrols();
+		mlx_key_hook(map.win, ft_keyhooked, &map);
+		mlx_mouse_hook(map.win, ft_mousehooked, &map);
+		mlx_hook(map.win, 6, (1L << 6), ft_hook, &map);
+		mlx_loop(map.mlx);
+	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: thbernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/16 11:55:52 by thbernar          #+#    #+#             */
-/*   Updated: 2018/03/15 16:34:25 by thbernar         ###   ########.fr       */
+/*   Updated: 2018/03/22 13:58:30 by thbernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ typedef struct	s_map
 }				t_map;
 
 int				ft_keyhooked(int keycode, t_map *map);
-int				ft_zoom(int keycode, t_map *map);
+int				ft_zoom(int keycode, t_map *map, int x, int y);
 int				ft_mousehooked(int button, int x, int y, t_map *map);
 int				ft_hook(int x, int y, t_map *map);
 
